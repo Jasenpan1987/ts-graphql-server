@@ -21,6 +21,10 @@ export class LoginResolver {
       return null;
     }
 
+    if (!userInDb.confirmed) {
+      return null;
+    }
+
     ctx.req.session!.userId = userInDb.id;
     console.log("userInDb.id:: ", userInDb.id);
 

@@ -11,12 +11,14 @@ import cors from "cors";
 import { redis } from "./redis";
 import { LoginResolver } from "./modules/user/Login";
 import { MeResolver } from "./modules/user/Me";
+import { AuthChecker } from "./utils/AuthChecker";
 
 const main = async () => {
   await createConnection();
 
   const schema = await buildSchema({
-    resolvers: [MeResolver, RegisterResolver, LoginResolver]
+    resolvers: [MeResolver, RegisterResolver, LoginResolver],
+    authChecker: AuthChecker
   });
 
   const apolloServer = new ApolloServer({

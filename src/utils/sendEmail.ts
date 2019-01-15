@@ -1,6 +1,11 @@
 import nodemailer from "nodemailer";
 
-export async function sendEmail(emailAddress: string, url: string) {
+export async function sendEmail(
+  emailAddress: string,
+  url: string,
+  subject: string,
+  content: string
+) {
   let account = await nodemailer.createTestAccount();
   const transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
@@ -15,9 +20,9 @@ export async function sendEmail(emailAddress: string, url: string) {
   const mailOptions = {
     from: '"Fred Foo 👻" <foo@example.com>', // sender address
     to: emailAddress, // list of receivers
-    subject: "Activate your account", // Subject line
-    text: "Activate your account", // plain text body
-    html: `<a href="${url}">Click me to activate your account</a>` // html body
+    subject: subject, // Subject line
+    text: content, // plain text body
+    html: `<a href="${url}">${content}</a>` // html body
   };
 
   const info = await transporter.sendMail(mailOptions);

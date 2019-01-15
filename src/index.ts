@@ -4,26 +4,17 @@ import { buildSchema, formatArgumentValidationError } from "type-graphql";
 
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { RegisterResolver } from "./modules/user/Register";
 import connectRedis from "connect-redis";
 import session from "express-session";
 import cors from "cors";
 import { redis } from "./redis";
-import { LoginResolver } from "./modules/user/Login";
-import { MeResolver } from "./modules/user/Me";
 import { AuthChecker } from "./utils/AuthChecker";
-import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 
 const main = async () => {
   await createConnection();
 
   const schema = await buildSchema({
-    resolvers: [
-      MeResolver,
-      RegisterResolver,
-      LoginResolver,
-      ConfirmUserResolver
-    ],
+    resolvers: [__dirname + "/modules/**/*.ts"],
     authChecker: AuthChecker
   });
 

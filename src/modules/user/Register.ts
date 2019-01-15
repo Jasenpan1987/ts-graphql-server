@@ -12,7 +12,7 @@ import { RegisterInput } from "./register/RegisterInput";
 import { isAuth } from "../../middleware/isAuth";
 import { logger } from "../../middleware/logger";
 import { sendEmail } from "../../utils/sendEmail";
-import { createConfirmationUrl } from "../../utils/createConfirmationUrl";
+import { createConfirmationUrl } from "../../utils/createUrl";
 
 @Resolver()
 export class RegisterResolver {
@@ -44,7 +44,12 @@ export class RegisterResolver {
       password: hashedPassword
     }).save();
 
-    await sendEmail(email, await createConfirmationUrl(user.id));
+    await sendEmail(
+      email,
+      await createConfirmationUrl(user.id),
+      "Activate your account",
+      "Click here to activate your account"
+    );
     return user;
   }
 }

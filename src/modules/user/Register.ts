@@ -29,7 +29,7 @@ export class RegisterResolver {
   }
 
   @Mutation(() => User)
-  async register(@Arg("registerInput")
+  async register(@Arg("data")
   {
     firstName,
     lastName,

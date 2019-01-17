@@ -1,6 +1,6 @@
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
-import { buildSchema, formatArgumentValidationError } from "type-graphql";
+import { formatArgumentValidationError } from "type-graphql";
 
 import "reflect-metadata";
 import { createConnection } from "typeorm";
@@ -8,15 +8,12 @@ import connectRedis from "connect-redis";
 import session from "express-session";
 import cors from "cors";
 import { redis } from "./redis";
-import { AuthChecker } from "./utils/AuthChecker";
+import { createSchema } from "./utils/createSchema";
 
 const main = async () => {
   await createConnection();
 
-  const schema = await buildSchema({
-    resolvers: [__dirname + "/modules/**/*.ts"],
-    authChecker: AuthChecker
-  });
+  const schema = await createSchema();
 
   const apolloServer = new ApolloServer({
     schema,

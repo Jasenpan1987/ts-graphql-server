@@ -1,5 +1,5 @@
 import { Resolver, Query, Ctx } from "type-graphql";
-import { User } from "../../entity/User";
+import { User } from "../../../entity/User";
 import { LoginContext } from "src/types/LoginContext";
 
 @Resolver()

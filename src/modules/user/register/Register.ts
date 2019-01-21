@@ -7,12 +7,12 @@ import {
   UseMiddleware
 } from "type-graphql";
 import bcrypt from "bcryptjs";
-import { User } from "../../entity/User";
-import { RegisterInput } from "./register/RegisterInput";
-import { isAuth } from "../../middleware/isAuth";
-import { logger } from "../../middleware/logger";
-import { sendEmail } from "../../utils/sendEmail";
-import { createConfirmationUrl } from "../../utils/createUrl";
+import { User } from "../../../entity/User";
+import { RegisterInput } from ".././register/RegisterInput";
+import { isAuth } from "../../../middleware/isAuth";
+import { logger } from "../../../middleware/logger";
+import { sendEmail } from "../../../utils/sendEmail";
+import { createConfirmationUrl } from "../../../utils/createUrl";
 
 @Resolver()
 export class RegisterResolver {

@@ -7,6 +7,8 @@ import { LoginResolver } from "../modules/user/Login";
 import { RegisterResolver } from "../modules/user/register/Register";
 import { LogoutResolver } from "../modules/user/Logout";
 import { MeResolver } from "../modules/user/me/Me";
+import { CreateUserResolver } from "../modules/user/CreateUser";
+import { CreateProductResolver } from "../modules/product/CreateProduct";
 
 export const createSchema = () =>
   buildSchema({
@@ -17,7 +19,9 @@ export const createSchema = () =>
       LoginResolver,
       RegisterResolver,
       LogoutResolver,
-      MeResolver
+      MeResolver,
+      CreateUserResolver,
+      CreateProductResolver
     ],
     authChecker: AuthChecker
   });
